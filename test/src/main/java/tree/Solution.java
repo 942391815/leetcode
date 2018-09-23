@@ -20,7 +20,8 @@ public class Solution {
 //        levelFirst(root);
 //        first(root);
 //        middle(root);
-        after(root);
+//        after(root);
+        iterativePostorder4(root);
 //        afterRe(root);
 //        levelOrder1(root);
 //        levelWithNo(root);
@@ -35,7 +36,7 @@ public class Solution {
 
         while (!queue.isEmpty()) {
             TreeNode t = queue.poll();
-            System.out.print(t.val+"\t");
+            System.out.print(t.val + "\t");
             if (t.left != null) {
                 queue.add(t.left);
                 nlast = t.left;
@@ -102,6 +103,27 @@ public class Solution {
             }
         }
 
+    }
+
+    protected static void iterativePostorder4(TreeNode p) {
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        Stack<TreeNode> temp = new Stack<TreeNode>();
+        TreeNode node = p;
+        while (node != null || stack.size() > 0) {
+            while (node != null) {
+                temp.push(node);
+                stack.push(node);
+                node = node.right;
+            }
+            if (stack.size() > 0) {
+                node = stack.pop();
+                node = node.left;
+            }
+        }
+        while (temp.size() > 0) {//把插入序列都插入到了temp。
+            node = temp.pop();
+            System.out.println(node.val);
+        }
     }
 
     public static void middle(TreeNode root) {
