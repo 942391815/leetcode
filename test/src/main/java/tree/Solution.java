@@ -15,16 +15,16 @@ public class Solution {
         TreeNode right_right = new TreeNode(7);
         root.left = left;
         root.right = right;
-        right.left = right_left;
-        right.right = right_right;
+//        right.left = right_left;
+//        right.right = right_right;
 //        levelFirst(root);
 //        first(root);
 //        middle(root);
 //        after(root);
-        iterativePostorder4(root);
+//        iterativePostorder4(root);
 //        afterRe(root);
 //        levelOrder1(root);
-//        levelWithNo(root);
+        levelWithNo(root);
 //        postorder(root);
     }
 
@@ -103,6 +103,22 @@ public class Solution {
             }
         }
 
+    }
+
+    public int maxResult(int[] nums) {
+        int sum = nums[0];
+        int n = nums[0];
+        for (int i = 0; i < nums.length; i++) {
+            if (n > 0) {
+                n = n + nums[i];
+            } else {
+                n = nums[i];
+            }
+            if (sum < n) {
+                sum = n;
+            }
+        }
+        return sum;
     }
 
     protected static void iterativePostorder4(TreeNode p) {
